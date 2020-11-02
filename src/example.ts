@@ -14,5 +14,5 @@ type ReduceCallback<N, T> = (accumulator: N, currentValue: T, index: number, arr
 interface MyArray<T> {
 	[N: number]: T;
 
-	reduce: <N>(fn: ReduceCallback<T, N>, zeroValue: T) => N
+	reduce: <N>(fn: ReduceCallback<T, N>, zeroValue: N) => N
 }
