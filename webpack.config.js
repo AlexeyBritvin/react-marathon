@@ -16,6 +16,10 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.svg$/,
+        use: ['@svgr/webpack'],
+      },
+      {
         test: /\.[tj]sx?$/,
         exclude: '/node_modules/',
         use: ['ts-loader'],
@@ -28,7 +32,7 @@ module.exports = {
         test: /\.scss$/,
         use: [
           'style-loader',
-          'css-modules-typescript-loader?modules',
+          'css-modules-typescript-loader',
           {
             loader: 'css-loader',
             options: {
