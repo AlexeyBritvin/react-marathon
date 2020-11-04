@@ -1,0 +1,15 @@
+.header {
+  font-size: 64px;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: linear-gradient(180deg, #f5db13 0%, #f2b807 100%);
+}
+
+.content {
+  flex-grow: 1;
+}
