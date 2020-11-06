@@ -13,11 +13,16 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: 'main.js',
   },
+  watch: true,
+  watchOptions: {
+    ignored: /node_modules/,
+    poll: 1000,
+  },
   module: {
     rules: [
       {
         test: /\.svg$/,
-        use: ['@svgr/webpack'],
+        use: ['@svgr/webpack', 'url-loader'],
       },
       {
         test: /\.[tj]sx?$/,

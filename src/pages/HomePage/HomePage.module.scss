@@ -1,0 +1,17 @@
+@import '../../styles/variables';
+
+.root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: linear-gradient(180deg, $third 0%, $primary 100%);
+}
+
+.content {
+  flex-grow: 1;
+}
+
+.header {
+  font-size: 64px;
+}
