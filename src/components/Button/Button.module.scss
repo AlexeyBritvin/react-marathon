@@ -1,0 +1,21 @@
+.root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 66px;
+  padding: 0 20px 9px;
+  font-size: 22px;
+  font-weight: bold;
+  line-height: 26px;
+  border: none;
+  border-radius: 11px;
+  background: #73d677;
+  box-shadow: inset 0px -9px 0px rgba(0, 0, 0, 0.18);
+  cursor: pointer;
+  outline: none;
+
+  &:active {
+    padding-bottom: 6px;
+    box-shadow: inset 0px -6px 0px rgba(0, 0, 0, 0.18);
+  }
+}
