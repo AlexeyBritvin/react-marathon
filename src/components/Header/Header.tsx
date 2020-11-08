@@ -1,6 +1,8 @@
 import React from 'react';
 import { ReactComponent as Logo } from '../../icons/logo.svg';
+import Layout from '../Layout/Layout';
 import Navbar from '../Navbar/Navbar';
+
 import styles from './Header.module.scss';
 
 export interface HeaderProps {}
@@ -8,10 +10,10 @@ export interface HeaderProps {}
 const Header: React.FC<HeaderProps> = () => {
   return (
     <header className={styles.header}>
-      <div className="container flex-row">
+      <Layout className={styles.content}>
         <Logo />
         <Navbar />
-      </div>
+      </Layout>
     </header>
   );
 };
