@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import styles from './Navbar.module.scss';
 
@@ -12,12 +13,12 @@ const menu: Menu[] = [
   {
     id: 1,
     label: 'Home',
-    link: '#',
+    link: '/',
   },
   {
     id: 2,
     label: 'Pokédex',
-    link: '#',
+    link: '/pokedex',
   },
   {
     id: 3,
@@ -39,9 +40,9 @@ const Navbar: React.FC<NavbarProps> = () => {
       <ul className={styles.menu}>
         {menu.map((item) => (
           <li key={item.id}>
-            <a href={item.link} className={styles.menuLink}>
+            <Link to={item.link} className={styles.menuLink}>
               {item.label}
-            </a>
+            </Link>
           </li>
         ))}
       </ul>

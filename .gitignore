@@ -1,4 +1,3 @@
 /node_modules/
 /dist/
-/src/typings/
-*.d.ts
+*.module.scss.d.ts

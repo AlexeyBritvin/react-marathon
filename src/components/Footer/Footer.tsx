@@ -1,4 +1,5 @@
 import React from 'react';
+import Layout from '../Layout/Layout';
 
 import styles from './Footer.module.scss';
 
@@ -7,7 +8,7 @@ export interface FooterProps {}
 const Footer: React.FC<FooterProps> = () => {
   return (
     <footer className={styles.footer}>
-      <div className="container flex-row">
+      <Layout className={styles.content}>
         <div>
           <span>
             Make with
@@ -19,7 +20,7 @@ const Footer: React.FC<FooterProps> = () => {
         <div>
           <span>Ours Team</span>
         </div>
-      </div>
+      </Layout>
     </footer>
   );
 };

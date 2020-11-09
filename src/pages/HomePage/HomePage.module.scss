@@ -1,6 +1,7 @@
 @import '../../styles/variables';
 
 .root {
+  overflow: hidden;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -10,8 +11,21 @@
 
 .content {
   flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .header {
   font-size: 64px;
+}
+
+.parallaxWrap {
+  overflow: hidden;
+}
+
+.textWrap {
+  p {
+    font-size: 32px;
+  }
 }
