@@ -1,21 +1,51 @@
+$box-shadow-color: rgba(0, 0, 0, 0.18);
+
 .root {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 66px;
-  padding: 0 20px 9px;
-  font-size: 22px;
-  font-weight: bold;
-  line-height: 26px;
   border: none;
   border-radius: 11px;
-  background: #73d677;
-  box-shadow: inset 0px -9px 0px rgba(0, 0, 0, 0.18);
+  box-shadow: inset 0px -9px 0px $box-shadow-color;
   cursor: pointer;
   outline: none;
 
   &:active {
     padding-bottom: 6px;
-    box-shadow: inset 0px -6px 0px rgba(0, 0, 0, 0.18);
+    box-shadow: inset 0px -6px 0px $box-shadow-color;
   }
+}
+
+.green {
+  background-color: #73d677;
+}
+
+.yellow {
+  background-color: #f2cb07;
+}
+
+.fullwidth {
+  width: 100%;
+}
+
+.small {
+  height: 20px;
+  padding: 0 8px 2px;
+  font-size: 14px;
+  line-height: 18px;
+  box-shadow: inset 0px -2px 0px $box-shadow-color;
+
+  &:active {
+    padding-bottom: 0px;
+    box-shadow: none;
+  }
+}
+
+.normal,
+.fullwidth {
+  height: 66px;
+  padding: 0 20px 9px;
+  font-size: 22px;
+  font-weight: bold;
+  line-height: 26px;
 }
