@@ -1,5 +1,5 @@
+import { A } from 'hookrouter';
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 import styles from './Navbar.module.scss';
 
@@ -40,9 +40,9 @@ const Navbar: React.FC<NavbarProps> = () => {
       <ul className={styles.menu}>
         {menu.map((item) => (
           <li key={item.id}>
-            <Link to={item.link} className={styles.menuLink}>
+            <A href={item.link} className={styles.menuLink}>
               {item.label}
-            </Link>
+            </A>
           </li>
         ))}
       </ul>

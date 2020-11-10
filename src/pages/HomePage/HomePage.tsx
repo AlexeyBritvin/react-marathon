@@ -1,5 +1,5 @@
+import { navigate } from 'hookrouter';
 import React from 'react';
-import { RouteComponentProps } from 'react-router-dom';
 import Button from '../../components/Button/Button';
 import Footer from '../../components/Footer/Footer';
 import Header from '../../components/Header/Header';
@@ -9,10 +9,10 @@ import Parallax from '../../components/Parallax/Parallax';
 
 import styles from './HomePage.module.scss';
 
-export interface HomePageProps extends RouteComponentProps {}
+export interface HomePageProps {}
 
-const HomePage: React.FC<HomePageProps> = ({ history: { push } }) => {
-  const onButtonClick = () => push('/pokedex');
+const HomePage: React.FC<HomePageProps> = () => {
+  const onButtonClick = () => navigate('/pokedex');
 
   return (
     <div className={styles.root}>
