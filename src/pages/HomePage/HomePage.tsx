@@ -19,7 +19,7 @@ const HomePage: React.FC<HomePageProps> = () => {
       <Header />
       <Layout className={styles.content}>
         <div className={styles.textWrap}>
-          <Heading type="h1">
+          <Heading type="l">
             <b>Find</b> all your favorite <b>Pokemon</b>
           </Heading>
           <p>You can know the type of Pokemon, its strengths, disadvantages and abilities</p>
