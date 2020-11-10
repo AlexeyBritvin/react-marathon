@@ -1,47 +1,25 @@
-import { A } from 'hookrouter';
+import { A, usePath } from 'hookrouter';
 import React from 'react';
+import cn from 'classnames';
+import { GENERAL_MENU } from '../../routes';
 
 import styles from './Navbar.module.scss';
-
-interface Menu {
-  id: number;
-  label: string;
-  link: string;
-}
-
-const menu: Menu[] = [
-  {
-    id: 1,
-    label: 'Home',
-    link: '/',
-  },
-  {
-    id: 2,
-    label: 'Pokédex',
-    link: '/pokedex',
-  },
-  {
-    id: 3,
-    label: 'Legendaries',
-    link: '#',
-  },
-  {
-    id: 4,
-    label: 'Documentation',
-    link: '#',
-  },
-];
 
 export interface NavbarProps {}
 
 const Navbar: React.FC<NavbarProps> = () => {
+  const path = usePath();
   return (
     <nav className={styles.root}>
       <ul className={styles.menu}>
-        {menu.map((item) => (
-          <li key={item.id}>
-            <A href={item.link} className={styles.menuLink}>
-              {item.label}
+        {GENERAL_MENU.map(({ title, link }) => (
+          <li key={title}>
+            <A
+              href={link}
+              className={cn(styles.menuLink, {
+                [styles.activeLink]: link === path,
+              })}>
+              {title}
             </A>
           </li>
         ))}
