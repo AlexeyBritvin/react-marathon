@@ -6,6 +6,7 @@ import styles from './NotFound.module.scss';
 import TeamRocket from './assets/Team_Rocket.png';
 import Heading from '../../components/Heading/Heading';
 import Button from '../../components/Button/Button';
+import { RouteLinks } from '../../routes';
 
 export interface NotFoundPageProps {}
 
@@ -22,7 +23,7 @@ const NotFoundPage: React.FC<NotFoundPageProps> = () => {
           <span className={styles.highlighted}>The rocket team</span> has won this time.
         </Heading>
 
-        <Button onClick={() => navigate('/')} color="yellow">
+        <Button onClick={() => navigate(RouteLinks.Main)} color="yellow">
           Return
         </Button>
       </div>

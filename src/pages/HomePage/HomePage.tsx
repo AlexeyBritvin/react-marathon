@@ -6,13 +6,14 @@ import Header from '../../components/Header/Header';
 import Heading from '../../components/Heading/Heading';
 import Layout from '../../components/Layout/Layout';
 import Parallax from '../../components/Parallax/Parallax';
+import { RouteLinks } from '../../routes';
 
 import styles from './HomePage.module.scss';
 
 export interface HomePageProps {}
 
 const HomePage: React.FC<HomePageProps> = () => {
-  const onButtonClick = () => navigate('/pokedex');
+  const onButtonClick = () => navigate(RouteLinks.Pokedex);
 
   return (
     <div className={styles.root}>

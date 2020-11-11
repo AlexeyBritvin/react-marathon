@@ -6,31 +6,38 @@ interface Routes {
   [key: string]: () => ReactElement;
 }
 
+export enum RouteLinks {
+  Main = '/',
+  Pokedex = '/pokedex',
+  Legendaries = '/legendaries',
+  Documentation = '/documentation',
+}
+
 interface Menu {
   title: string;
-  link: string;
+  link: RouteLinks;
   component: () => ReactElement;
 }
 
 export const GENERAL_MENU: Menu[] = [
   {
     title: 'Home',
-    link: '/',
+    link: RouteLinks.Main,
     component: () => <HomePage />,
   },
   {
     title: 'Pokédex',
-    link: '/pokedex',
+    link: RouteLinks.Pokedex,
     component: () => <PokedexPage />,
   },
   {
     title: 'Legendaries',
-    link: '/legendaries',
+    link: RouteLinks.Legendaries,
     component: () => <></>,
   },
   {
     title: 'Documentation',
-    link: '/documentation',
+    link: RouteLinks.Documentation,
     component: () => <></>,
   },
 ];

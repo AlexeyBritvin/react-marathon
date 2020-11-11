@@ -27,6 +27,7 @@ module.exports = {
         jsx: 'never',
       },
     ],
+    'no-shadow': 'off',
   },
   settings: {
     'import/resolver': {
