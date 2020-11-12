@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import Header from '../../components/Header/Header';
 import Heading from '../../components/Heading/Heading';
 import Layout from '../../components/Layout/Layout';
 import PokemonCard from '../../components/PokemonCard/PokemonCard';
@@ -19,7 +18,6 @@ const PokedexPage: React.FC<PokedexPageProps> = () => {
 
   return (
     <div className={styles.root}>
-      <Header />
       <Layout className={styles.content}>
         <Heading type="l">Pokedex</Heading>
 

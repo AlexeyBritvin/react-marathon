@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { ReactComponent as Logo } from '../../icons/logo.svg';
 import Layout from '../Layout/Layout';
 import Navbar from '../Navbar/Navbar';
@@ -18,4 +18,4 @@ const Header: React.FC<HeaderProps> = () => {
   );
 };
 
-export default Header;
+export default memo(Header);
