@@ -6,7 +6,7 @@ export interface Pokemon {
   name_clean: string;
   abilities: string[];
   stats: Stats;
-  types: PokemonType[];
+  types: PokemonTypes[];
   img: string;
   name: string;
   base_experience: number;
@@ -16,4 +16,10 @@ export interface Pokemon {
   weight: number;
 }
 
-export type PokemonType = 'grass' | 'fire' | 'water' | 'rock' | 'poison';
+export enum PokemonTypes {
+  Grass = 'grass',
+  Fire = 'fire',
+  Water = 'water',
+  Rock = 'rock',
+  Poison = 'poison',
+}

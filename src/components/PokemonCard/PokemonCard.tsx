@@ -10,6 +10,7 @@ interface PokemonCardProps {
 }
 
 const PokemonCard: React.FC<PokemonCardProps> = ({ pokemon: { name, stats, types, img } }) => {
+  const mainType = types[0];
   return (
     <div className={s.root}>
       <div className={s.infoWrap}>
@@ -29,13 +30,13 @@ const PokemonCard: React.FC<PokemonCardProps> = ({ pokemon: { name, stats, types
 
         <div className={s.labelWrap}>
           {types.map((type) => (
-            <span className={cn(s.label, s[type])} key={type}>
+            <span className={cn(s.label, s[`label-${type}` as keyof typeof s])} key={type}>
               {type}
             </span>
           ))}
         </div>
       </div>
-      <div className={s.pictureWrap}>
+      <div className={cn(s.pictureWrap, s[`pictureWrap-${mainType}` as keyof typeof s])}>
         <img src={img} alt={name} />
       </div>
     </div>
