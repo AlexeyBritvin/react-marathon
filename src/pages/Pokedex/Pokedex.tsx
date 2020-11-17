@@ -37,8 +37,14 @@ const PokedexPage: React.FC<PokedexPageProps> = () => {
           {data.total} <b>Pokemons</b> for you to choose your favorite
         </Heading>
 
-        <div>
-          <input type="text" value={searchValue} onChange={handleNameChange} />
+        <div className={styles.inputWrap}>
+          <input
+            className={styles.searchInput}
+            type="text"
+            value={searchValue}
+            onChange={handleNameChange}
+            placeholder="Find your pokemon"
+          />
         </div>
 
         <div className={styles.cardsWrap}>
