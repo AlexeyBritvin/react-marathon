@@ -1,0 +1,42 @@
+@import '../../styles/variables';
+
+.ball {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  position: relative;
+  box-shadow: 0px 0px 10px rgba(33, 33, 33, 0.15);
+}
+
+.ballBottom,
+.ballTop {
+  position: absolute;
+  left: 0px;
+  width: 100%;
+  height: calc(50% - 1px);
+  background-color: #e7e7e9;
+}
+
+.ballBottom {
+  bottom: 0;
+  border-radius: 0 0 100px 100px;
+}
+
+.ballTop {
+  top: 0;
+  border-radius: 100px 100px 0 0;
+  background-color: #c5312a;
+}
+
+.ballInner {
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+  background-color: $dark;
+  border-radius: 50%;
+  z-index: 2;
+}
