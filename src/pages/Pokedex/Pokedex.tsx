@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import Heading from '../../components/Heading/Heading';
 import Layout from '../../components/Layout/Layout';
 import PokemonCard from '../../components/PokemonCard/PokemonCard';
@@ -10,7 +10,17 @@ import styles from './Pokedex.module.scss';
 export interface PokedexPageProps {}
 
 const PokedexPage: React.FC<PokedexPageProps> = () => {
-  const { data, isLoading, isError } = useData<PokemonsResponse>('getPokemons');
+  const [searchValue, setSearchValue] = useState('');
+  const [query, setQuery] = useState({});
+  const { data, isLoading, isError } = useData<PokemonsResponse>('getPokemons', query, [searchValue]);
+
+  const handleNameChange = ({ target }: ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(target.value);
+    setQuery((s) => ({
+      ...s,
+      name: target.value,
+    }));
+  };
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -26,6 +36,10 @@ const PokedexPage: React.FC<PokedexPageProps> = () => {
         <Heading type="l" className={styles.title}>
           {data.total} <b>Pokemons</b> for you to choose your favorite
         </Heading>
+
+        <div>
+          <input type="text" value={searchValue} onChange={handleNameChange} />
+        </div>
 
         <div className={styles.cardsWrap}>
           {data.pokemons.map((item) => (

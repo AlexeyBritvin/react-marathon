@@ -1,8 +1,8 @@
 import Url from 'url';
-import getUrlWithParams from './get-url-with-params';
+import getUrlWithParams, { Query } from './get-url-with-params';
 
-const req = (endPoint: string) => {
-  const uri = Url.format(getUrlWithParams(endPoint));
+const req = (endPoint: string, query: Query) => {
+  const uri = Url.format(getUrlWithParams(endPoint, query));
 
   return fetch(uri).then((res) => res.json());
 };

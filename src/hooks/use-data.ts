@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import req from '../utils/request';
+import { Query } from '../utils/get-url-with-params';
 
 interface UseDataRes<T> {
   data: T;
@@ -7,7 +8,7 @@ interface UseDataRes<T> {
   isError: boolean;
 }
 
-const useData = <T>(endPoint: string): UseDataRes<T> => {
+const useData = <T>(endPoint: string, query: Query, deps: any[] = []): UseDataRes<T> => {
   const [data, setData] = useState<T>(null);
   const [isLoading, setLoading] = useState(true);
   const [isError, setError] = useState(false);
@@ -15,7 +16,7 @@ const useData = <T>(endPoint: string): UseDataRes<T> => {
   useEffect(() => {
     const getData = async () => {
       try {
-        const response: T = await req(endPoint);
+        const response: T = await req(endPoint, query);
 
         setData(response);
       } catch (err) {
@@ -26,7 +27,7 @@ const useData = <T>(endPoint: string): UseDataRes<T> => {
     };
 
     getData();
-  }, [endPoint]);
+  }, deps);
 
   return {
     data,

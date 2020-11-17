@@ -1,10 +1,15 @@
 import config from '../config/server';
 
-const getUrlWithParams = (endPoint: string) => {
+export interface Query {
+  [key: string]: string;
+}
+
+const getUrlWithParams = (endPoint: string, query: Query) => {
   return {
     protocol: config.protocol,
     host: config.host,
     pathname: config.endPoint[endPoint].pathname,
+    query,
   };
 };
 
