@@ -1,38 +1,27 @@
-import React, { useEffect, useState } from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import Heading from '../../components/Heading/Heading';
 import Layout from '../../components/Layout/Layout';
+import Loader from '../../components/Loader/Loader';
 import PokemonCard from '../../components/PokemonCard/PokemonCard';
-import { Pokemon } from './models/pokemon.model';
+import useData from '../../hooks/use-data';
 import { PokemonsResponse } from './models/response.model';
 
 import styles from './Pokedex.module.scss';
 
-const url = 'http://zar.hosthot.ru/api/v1/pokemons';
-
 export interface PokedexPageProps {}
 
 const PokedexPage: React.FC<PokedexPageProps> = () => {
-  const [pokemons, setPokemons] = useState<Pokemon[]>([]);
-  const [total, setTotal] = useState(0);
-  const [isLoading, setLoading] = useState(true);
-  const [isError, setError] = useState(false);
+  const [searchValue, setSearchValue] = useState('');
+  const [query, setQuery] = useState({});
+  const { data, isLoading, isError } = useData<PokemonsResponse>('getPokemons', query, [searchValue]);
 
-  useEffect(() => {
-    fetch(url)
-      .then((res) => res.json())
-      .then((res: PokemonsResponse) => {
-        setTotal(res.total);
-        setPokemons(res.pokemons);
-      })
-      .catch(() => {
-        setError(true);
-      })
-      .finally(() => setLoading(false));
-  }, []);
-
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
+  const handleNameChange = ({ target }: ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(target.value);
+    setQuery((s) => ({
+      ...s,
+      name: target.value,
+    }));
+  };
 
   if (isError) {
     return <div>Something went wrong!</div>;
@@ -42,14 +31,28 @@ const PokedexPage: React.FC<PokedexPageProps> = () => {
     <div className={styles.root}>
       <Layout className={styles.content}>
         <Heading type="l" className={styles.title}>
-          {total} <b>Pokemons</b> for you to choose your favorite
+          {data?.total} <b>Pokemons</b> for you to choose your favorite
         </Heading>
 
-        <div className={styles.cardsWrap}>
-          {pokemons.map((item) => (
-            <PokemonCard key={item.id} pokemon={item} />
-          ))}
+        <div className={styles.inputWrap}>
+          <input
+            className={styles.searchInput}
+            type="text"
+            value={searchValue}
+            onChange={handleNameChange}
+            placeholder="Find your pokemon"
+          />
         </div>
+
+        {isLoading ? (
+          <Loader />
+        ) : (
+          <div className={styles.cardsWrap}>
+            {data.pokemons.map((item) => (
+              <PokemonCard key={item.id} pokemon={item} />
+            ))}
+          </div>
+        )}
       </Layout>
     </div>
   );

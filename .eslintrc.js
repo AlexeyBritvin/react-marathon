@@ -28,6 +28,14 @@ module.exports = {
       },
     ],
     'no-shadow': 'off',
+    'react-hooks/exhaustive-deps': 'off',
+    'react/self-closing-comp': [
+      'error',
+      {
+        component: true,
+        html: false,
+      },
+    ],
   },
   settings: {
     'import/resolver': {
