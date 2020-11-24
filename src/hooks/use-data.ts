@@ -15,9 +15,9 @@ const useData = <T>(endPoint: string, query: Query, deps: any[] = []): UseDataRe
 
   useEffect(() => {
     setLoading(true);
-    const getData = async () => {
+    const getData = async (): Promise<void> => {
       try {
-        const response: T = await req(endPoint, query);
+        const response = await req<T>(endPoint, query);
 
         setData(response);
       } catch (err) {
