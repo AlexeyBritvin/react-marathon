@@ -1,7 +1,10 @@
 const toCapitalizeFirstLetter = (word: string): string => {
-  const letters = word.split('');
+  if (!word.length) {
+    return '';
+  }
+  const letters = word.toLowerCase().split('');
   const [first, ...rest] = letters;
-  return [first.toUpperCase(), ...rest.map((letter) => letter.toLowerCase())].join('');
+  return [first.toUpperCase(), ...rest].join('');
 };
 
 export default toCapitalizeFirstLetter;

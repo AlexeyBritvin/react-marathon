@@ -12,4 +12,8 @@ describe('capitalize', () => {
   test('should lowercase all except first', () => {
     expect(toCapitalizeFirstLetter('SENIOR')).toBe('Senior');
   });
+
+  test('should return empty string', () => {
+    expect(toCapitalizeFirstLetter('')).toBe('');
+  });
 });
