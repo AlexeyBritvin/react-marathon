@@ -1,4 +1,6 @@
-const config = {
+import { Config } from './config.model';
+
+const config: Config = {
   protocol: 'http',
   baseUrl: 'http://zar.hosthot.ru/api/v1',
   host: 'zar.hosthot.ru',
@@ -6,6 +8,10 @@ const config = {
     getPokemons: {
       method: 'GET',
       pathname: '/api/v1/pokemons',
+    },
+    getPokemon: {
+      method: 'GET',
+      pathname: '/api/v1/pokemon/{id}',
     },
   },
 };

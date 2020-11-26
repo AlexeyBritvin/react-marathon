@@ -1,12 +1,12 @@
 import React from 'react';
 import cn from 'classnames';
-import { Pokemon } from '../../pages/Pokedex/models/pokemon.model';
+import { PokemonRequest } from '../../pages/Pokedex/models/pokemon.model';
 import Heading from '../Heading/Heading';
 
 import s from './PokemonCard.module.scss';
 
 interface PokemonCardProps {
-  pokemon: Pokemon;
+  pokemon: PokemonRequest;
 }
 
 const PokemonCard: React.FC<PokemonCardProps> = ({ pokemon: { name, stats, types, img } }) => {

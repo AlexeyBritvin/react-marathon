@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 import { Stats } from './stats.model';
 
-export interface Pokemon {
+export interface PokemonRequest {
   id: number;
   name_clean: string;
   abilities: string[];

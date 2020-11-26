@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import req from '../utils/request';
 import { Query } from '../utils/get-url-with-params';
+import { EndpointsUrl } from '../config/config.model';
 
 interface UseDataRes<T> {
   data: T;
@@ -8,16 +9,16 @@ interface UseDataRes<T> {
   isError: boolean;
 }
 
-const useData = <T>(endPoint: string, query: Query, deps: any[] = []): UseDataRes<T> => {
+const useData = <T>(endPoint: EndpointsUrl, query: Query, deps: any[] = []): UseDataRes<T> => {
   const [data, setData] = useState<T>(null);
   const [isLoading, setLoading] = useState(true);
   const [isError, setError] = useState(false);
 
   useEffect(() => {
     setLoading(true);
-    const getData = async () => {
+    const getData = async (): Promise<void> => {
       try {
-        const response: T = await req(endPoint, query);
+        const response = await req<T>(endPoint, query);
 
         setData(response);
       } catch (err) {

@@ -4,21 +4,29 @@ import Layout from '../../components/Layout/Layout';
 import Loader from '../../components/Loader/Loader';
 import PokemonCard from '../../components/PokemonCard/PokemonCard';
 import useData from '../../hooks/use-data';
+import useDebounce from '../../hooks/use-debounce';
+import { Query } from '../../utils/get-url-with-params';
+import { PokemonRequest } from './models/pokemon.model';
 import { PokemonsResponse } from './models/response.model';
 
 import styles from './Pokedex.module.scss';
+
+interface Filter extends Query {
+  name?: string;
+}
 
 export interface PokedexPageProps {}
 
 const PokedexPage: React.FC<PokedexPageProps> = () => {
   const [searchValue, setSearchValue] = useState('');
-  const [query, setQuery] = useState({});
-  const { data, isLoading, isError } = useData<PokemonsResponse>('getPokemons', query, [searchValue]);
+  const [query, setQuery] = useState<Filter>({});
+  const debounceValue = useDebounce(searchValue, 500);
+  const { data, isLoading, isError } = useData<PokemonsResponse>('getPokemons', query, [debounceValue]);
 
   const handleNameChange = ({ target }: ChangeEvent<HTMLInputElement>) => {
     setSearchValue(target.value);
-    setQuery((s) => ({
-      ...s,
+    setQuery((state) => ({
+      ...state,
       name: target.value,
     }));
   };
@@ -48,7 +56,7 @@ const PokedexPage: React.FC<PokedexPageProps> = () => {
           <Loader />
         ) : (
           <div className={styles.cardsWrap}>
-            {data.pokemons.map((item) => (
+            {data.pokemons.map((item: PokemonRequest) => (
               <PokemonCard key={item.id} pokemon={item} />
             ))}
           </div>

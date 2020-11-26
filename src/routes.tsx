@@ -1,9 +1,10 @@
-import React, { ReactElement } from 'react';
+import React, { PropsWithChildren, ReactElement } from 'react';
+import Pokemon from './components/Pokemon/Pokemon';
 import HomePage from './pages/HomePage/HomePage';
 import PokedexPage from './pages/Pokedex/Pokedex';
 
 interface Routes {
-  [key: string]: () => ReactElement;
+  [key: string]: (props: PropsWithChildren<any>) => ReactElement;
 }
 
 export enum RouteLinks {
@@ -11,12 +12,13 @@ export enum RouteLinks {
   Pokedex = '/pokedex',
   Legendaries = '/legendaries',
   Documentation = '/documentation',
+  Pokemon = '/pokedex/:id',
 }
 
 interface Menu {
   title: string;
   link: RouteLinks;
-  component: () => ReactElement;
+  component: (props: PropsWithChildren<any>) => ReactElement;
 }
 
 export const GENERAL_MENU: Menu[] = [
@@ -42,7 +44,11 @@ export const GENERAL_MENU: Menu[] = [
   },
 ];
 
-const routes = GENERAL_MENU.reduce((acc, item) => {
+const SECOND_ROUTES: Menu[] = [
+  { title: 'Pokemon', link: RouteLinks.Pokemon, component: ({ id }) => <Pokemon id={id} /> },
+];
+
+const routes = [...GENERAL_MENU, ...SECOND_ROUTES].reduce((acc, item) => {
   acc[item.link] = item.component;
   return acc;
 }, {} as Routes);
