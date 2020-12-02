@@ -1,23 +1,20 @@
 const path = require('path');
+const nodeExternals = require('webpack-node-externals');
 
 const { NODE_ENV } = process.env;
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
+  target: 'node',
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
   },
   mode: NODE_ENV || 'development',
-  entry: path.resolve(__dirname, 'src/index.ts'),
+  entry: path.resolve(__dirname, '../src/server/server.js'),
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'main.js',
+    path: path.resolve(__dirname, '../dist'),
+    filename: 'server.js',
   },
-  watch: NODE_ENV === 'development',
-  watchOptions: {
-    ignored: /node_modules/,
-    poll: 1000,
-  },
+  externals: [nodeExternals()],
   module: {
     rules: [
       {
@@ -26,17 +23,15 @@ module.exports = {
       },
       {
         test: /\.[tj]sx?$/,
-        exclude: '/node_modules/',
         use: ['ts-loader'],
       },
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
+        use: ['css-loader'],
       },
       {
         test: /\.scss$/,
         use: [
-          'style-loader',
           'css-modules-typescript-loader',
           {
             loader: 'css-loader',
@@ -69,16 +64,4 @@ module.exports = {
       },
     ],
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, 'public/index.html'),
-    }),
-  ],
-  devServer: {
-    port: 3000,
-    open: true,
-    hot: true,
-    historyApiFallback: true,
-  },
-  devtool: 'source-map',
 };
